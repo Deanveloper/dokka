@@ -559,9 +559,11 @@ abstract class StructuredOutputBuilder(val to: StringBuilder,
                             elementPlatforms
                         appendIndexRow(platforms) {
                             appendTableCell {
-                                appendLink(memberLocation)
-                                if (members.singleOrNull()?.kind != NodeKind.ExternalClass) {
-                                    appendPlatforms(platforms)
+                                appendParagraph {
+                                    appendLink(memberLocation)
+                                    if (members.singleOrNull()?.kind != NodeKind.ExternalClass) {
+                                        appendPlatforms(platforms)
+                                    }
                                 }
                             }
                             appendTableCell {
