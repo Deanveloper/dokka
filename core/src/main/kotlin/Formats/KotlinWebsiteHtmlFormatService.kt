@@ -66,14 +66,6 @@ open class KotlinWebsiteHtmlOutputBuilder(to: StringBuilder,
 
     override fun appendLink(href: String, body: () -> Unit) = wrap("<a href=\"$href\">", "</a>", body)
 
-    override fun appendHeader(level: Int, body: () -> Unit) {
-        if (insideDiv > 0) {
-            wrapInTag("p", body, newlineAfterClose = true)
-        } else {
-            super.appendHeader(level, body)
-        }
-    }
-
     override fun appendTable(vararg columns: String, body: () -> Unit) {
         to.appendln("<table class=\"api-docs-table\">")
         body()
@@ -164,6 +156,8 @@ open class KotlinWebsiteHtmlOutputBuilder(to: StringBuilder,
             }
         }
     }
+
+    override fun appendAnchor(anchor: String) {}
 }
 
 class KotlinWebsiteHtmlFormatService @Inject constructor(locationService: LocationService,
